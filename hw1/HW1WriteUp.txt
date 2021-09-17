@@ -1,0 +1,18 @@
+
+Authors:
+Adam Wolfson
+John Waldo
+
+
+Digit Recognizer:
+
+Our solution works pretty well if any only if their is a near identical match. The major issue we found with
+KNN is that all features are equally weighted and the way we have the pixels lined up if we translated one digit
+over a few pixels it would report a 0% match with the original.
+
+Given, the size of our dataset this is generally good enough. If a digit is unambiguous it will get it correct with a high accuracy. However, when reviewing the confusion matrix, we see errors with 4s that are written like 9s and other similar characters.
+
+We tried to solve some of these issues by cropping the image and removing the border. We found that a very low percentages of images are non zero on these features and figured that this pixel isnt critical to understanding the shape of the image. Removing these pixels allowed our KNN model to focus on the pixel features we felt would be more important.
+
+We also tried to rescale some of the pixels features. Instead of caring about color, we instead changed the features to be either 0 if unshaded or 1 if shaded. This would make it so the euclidean distance isnt as sensitive to a changing color but instead sensitive to if this pixel was shaded in.
+
